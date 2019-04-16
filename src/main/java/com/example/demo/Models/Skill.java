@@ -9,6 +9,20 @@ public class Skill {
     private int skillId;
     private String skill;
 
+    // 1:M with Contractor Skill
+
+    private Set<ContractorSkill> contractorSkills;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "skill")
+    public Set<ContractorSkill> getContractorSkills() {
+        return contractorSkills;
+    }
+
+    public void setContractorSkills(Set<ContractorSkill> contractorSkills) {
+
+        this.contractorSkills = contractorSkills;
+    }
+
     // 1:M with Required Skill
     private Set<RequiredSkill> requiredSkills;
 

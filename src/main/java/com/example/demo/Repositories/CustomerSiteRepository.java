@@ -17,4 +17,6 @@ public interface CustomerSiteRepository extends CrudRepository<CustomerSite, Int
             "Order by cust_site_name, cust_site_number;", nativeQuery = true)
     List<CustomerSite> findActiveCustomerSiteOrderByNameThenNumber();
 
+    List<CustomerSite> findAllByOrderByCustSiteId();
+
 }

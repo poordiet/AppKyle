@@ -1,5 +1,7 @@
 package com.example.demo.Models;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
@@ -21,6 +23,100 @@ public class Contractor {
     private String contractorPassword;
     private String contractorAvailability;
 
+    @Autowired
+    Country country;
+
+    @Autowired
+    StateProvince stateProvince;
+
+    @Autowired
+    ContractorSkill contractorSkill;
+
+    @Autowired
+    Skill skill;
+
+    private Set<Skill> skills;
+
+//    public Set<Skill> getSkills() {
+//        return skills;
+//    }
+
+    public void setSkills(Set<Skill> skills){
+        this.skills = skills;
+    }
+
+// M:1 with Country
+    @ManyToOne
+    @JoinColumn(name="country_id")
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+
+    // M:1 with State
+
+
+    @ManyToOne
+    @JoinColumn(name="state_id")
+    public StateProvince getStateProvince() {
+        return stateProvince;
+    }
+
+    public void setStateProvince(StateProvince stateProvince) {
+        this.stateProvince = stateProvince;
+    }
+
+    // M:1 with ContractorType
+    private ContractorType contractorType;
+
+    @ManyToOne
+    @JoinColumn(name="contractor_type_id")
+    public ContractorType getContractorType(){return contractorType;}
+
+    public void setContractorType(ContractorType contractorType) {
+        this.contractorType = contractorType;
+    }
+
+    // M:1 with ContractorStatus
+    private ContractorStatus contractorStatus;
+
+    @ManyToOne
+    @JoinColumn(name="contractor_status_id")
+    public ContractorStatus getContractorStatus(){return contractorStatus;}
+
+    public void setContractorStatus(ContractorStatus contractorStatus) {
+        this.contractorStatus = contractorStatus;
+    }
+
+    // 1:M with Contractor Skill
+
+    private Set<ContractorSkill> contractorSkills;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "contractor")
+    public Set<ContractorSkill> getContractorSkills() {
+        return contractorSkills;
+    }
+
+    public void setContractorSkills(Set<ContractorSkill> contractorSkills) {
+
+        this.contractorSkills = contractorSkills;
+    }
+
+    //M:1 with Access Level
+    private AccessLevel accessLevel;
+    @ManyToOne
+    @JoinColumn(name="acc_level_id")
+    public AccessLevel getAccessLevel(){return accessLevel;}
+
+    public void setAccessLevel(AccessLevel accessLevel) {
+        this.accessLevel = accessLevel;
+    }
+
+
     // 1:M with Assignment
     private Set<Assignment> assignments;
 
@@ -30,7 +126,6 @@ public class Contractor {
     }
 
     public void setAssignments(Set<Assignment> assignments) {
-        assignments.forEach(assignment -> assignment.setContractor(this));
         this.assignments = assignments;
     }
 
