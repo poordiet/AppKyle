@@ -9,19 +9,32 @@ public class StateProvince {
     private int stateId;
     private String stateName;
 
-    /*
+
     // 1:M with customer site
     private Set<CustomerSite> customerSites;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "stateProvince")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "stateProvince")
     public Set<CustomerSite> getCustomerSites() {
         return customerSites;
     }
 
     public void setCustomerSites(Set<CustomerSite> customerSites) {
-        customerSites.forEach(customerSite -> customerSite.setStateProvince(this));
+
         this.customerSites = customerSites;
-    }*/
+    }
+
+    // 1:M with contractor
+    private Set<Contractor> contractors;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "stateProvince")
+    public Set<Contractor> getContractors() {
+        return contractors;
+    }
+
+    public void setContractors(Set<Contractor> contractors) {
+
+        this.contractors = contractors;
+    }
 
     @Id
     @GeneratedValue(strategy  = GenerationType.IDENTITY)

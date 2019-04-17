@@ -6,4 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface CustomerSiteStatusRepository extends CrudRepository<CustomerSiteStatus,Integer> {
 
     CustomerSiteStatus findByCustSiteStatusId(int custSiteStatusId);
+
+    CustomerSiteStatus findCustomerSiteStatusByCustSiteStatusContaining(CustomerSiteStatus customerSiteStatus);
 }

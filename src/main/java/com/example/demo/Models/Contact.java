@@ -1,5 +1,7 @@
 package com.example.demo.Models;
 
+import com.example.demo.Presentation.CustomerPresentation;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -132,5 +134,8 @@ public class Contact {
     @Override
     public int hashCode() {
         return Objects.hash(contactId, contactFname, contactLname, contactPhone, contactEmail);
+    }
+
+    public void setCustomerSite(CustomerPresentation customerPresentation) {
     }
 }

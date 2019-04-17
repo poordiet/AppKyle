@@ -18,6 +18,7 @@ public class CustomerSite {
     private String custSiteEmail;
     private Date custSiteStart;
 
+//    private Set<Contact> contacts;
     private Set<ServiceOrder> serviceOrders;
 
 /* Returns Null Pointer Exception for some reason
@@ -96,6 +97,10 @@ public class CustomerSite {
         contacts.forEach(contact -> contact.setCustomerSite(this));
         this.contacts = contacts;
     }
+
+
+
+
 
     @Id
     @GeneratedValue(strategy  = GenerationType.IDENTITY)
@@ -207,5 +212,8 @@ public class CustomerSite {
     @Override
     public int hashCode() {
         return Objects.hash(custSiteId, custSiteNumber, custSiteName, custSiteAddress, custSiteCity, custSiteZip, custSitePhone, custSiteEmail, custSiteStart);
+    }
+
+    public void setContacts(Contact contact1) {
     }
 }

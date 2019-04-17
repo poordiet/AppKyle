@@ -2,6 +2,7 @@ package com.example.demo.Models;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Skill {
@@ -27,6 +28,20 @@ public class Skill {
 
     public void setSkill(String skill) {
         this.skill = skill;
+    }
+
+    // 1:M with Contractor Skill
+
+    private Set<ContractorSkill> contractorSkills;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "skill")
+    public Set<ContractorSkill> getContractorSkills() {
+        return contractorSkills;
+    }
+
+    public void setContractorSkills(Set<ContractorSkill> contractorSkills) {
+
+        this.contractorSkills = contractorSkills;
     }
 
     @Override

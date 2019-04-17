@@ -2,6 +2,7 @@ package com.example.demo.Models;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class AccessLevel {
@@ -38,6 +39,20 @@ public class AccessLevel {
 
     public void setAccLevelDesc(String accLevelDesc) {
         this.accLevelDesc = accLevelDesc;
+    }
+
+    private Set<Contractor> contractors;
+
+    // 1:M with Contractor
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "accessLevel")
+    public Set<Contractor> getContractor() {
+        return contractors;
+    }
+
+    public void setContractor(Set<Contractor> contractors) {
+
+        this.contractors = contractors;
     }
 
     @Override

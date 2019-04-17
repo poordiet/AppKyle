@@ -7,9 +7,9 @@ import java.util.Set;
 
 @Entity
 public class CustomerSiteStatus {
-    private int custSiteStatusId;
-    private String custSiteStatus;
-    private String custSiteStatusDesc;
+    public int custSiteStatusId;
+    public String custSiteStatus;
+    public String custSiteStatusDesc;
 /*
     // 1:M with CustomerSite
     private List<CustomerSite> customerSites;

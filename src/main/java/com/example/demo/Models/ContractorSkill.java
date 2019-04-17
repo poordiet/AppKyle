@@ -1,10 +1,14 @@
 package com.example.demo.Models;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class ContractorSkill {
+
+
     private int contractorSkillId;
 
     @Id
@@ -17,6 +21,33 @@ public class ContractorSkill {
     public void setContractorSkillId(int contractorSkillId) {
         this.contractorSkillId = contractorSkillId;
     }
+
+
+    //M:1 with Contractor
+    private Contractor contractor;
+
+    @ManyToOne
+    @JoinColumn(name="contractor_id")
+    public Contractor getContractor(){return contractor;}
+
+    public void setContractor(Contractor contractor) {
+        this.contractor = contractor;
+    }
+
+    //M:1 with Skill
+    private Skill skill;
+
+    @ManyToOne
+    @JoinColumn(name="skill_id")
+    public Skill getSkill(){return skill;}
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
+    }
+
+
+
+
 
     @Override
     public boolean equals(Object o) {

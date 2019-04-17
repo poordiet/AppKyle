@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/contractors")
 @Controller
-public class ContractorController {
+public class ContractorController_wtf {
 
     @Autowired
     ContractorRepository contractorRepository;
