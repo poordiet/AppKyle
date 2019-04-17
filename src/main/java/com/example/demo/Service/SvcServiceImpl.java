@@ -16,4 +16,14 @@ public class SvcServiceImpl implements SvcService {
     public List<Svc> findAll(){
         return svcRepository.findAll();
     }
+
+    public Svc findBySvcId(int Id)
+    {
+     return  svcRepository.findBySvcId(Id);
+    }
+
+    public List<Svc> findActiveSvcs()
+    {
+     return svcRepository.findActiveSvcs();
+    }
 }

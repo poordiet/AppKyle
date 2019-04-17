@@ -36,6 +36,18 @@ public class StateProvince {
         this.contractors = contractors;
     }
 
+    //1:M with contractor
+    private Set<Contractor> contractors;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "stateProvince")
+    public Set<Contractor> getContractors() {
+        return contractors;
+    }
+
+    public void setContractors(Set<Contractor> contractors) {
+        this.contractors = contractors;
+    }
+
     @Id
     @GeneratedValue(strategy  = GenerationType.IDENTITY)
     @Column(name = "state_id", nullable = false)

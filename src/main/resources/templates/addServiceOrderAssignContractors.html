@@ -162,43 +162,54 @@
 		<div class="container-fluid" id="form">
 			<h1 class="mt-4 text-center">Assign Contractor(s)</h1>
 		</div>
-
-		<!-- The Form -->
-		<div class="container" id="form">
+        <br>
+		<!-- Modal body -->
+		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-xl-auto">
-					<form th:action="@{/service_orders/assignContractors}" method = "POST"  th:object="${serviceOrderPresentation}" id="new customer">
+				<div class="col-sm-8">
+					<div class="table-responsive" style="overflow-x: auto">
 
-						<div class="col-sm-12" >
-							<div class="row" th:each="svc:${svcs}"  th:value="${svc.svcId}">
+						<table name="customer_table" class="table" >
+							<thead class="thead-light" id="customer_table_header">
 
-								<div class="col-sm-12">
-									<div class ="form-group">
-										<label>Service</label>
-										<input  th:value=${svc.svcName} type="text" class ="form-control" id="1_service" readonly>
 
-										<!--<select th:field="*{svcs}" class="form-control">
-											<option th:each="svc:${svcs}" th:value="${svc.svcId}" th:text = "${svc.svcName}"></option>
-										</select>-->
-									</div>
-								</div>
+							<tr>
+								<th scope="col">Service Name</th>
+								<th scope="col">Action</th>
+							</tr>
+							</thead>
 
-								<div class="col-sm-12">
-									<div class ="form-group">
-										<label>Available Contractors</label>
-										<select th:field="*{contractorList}" class ="form-control" multiple size="8" id="contractor_selected0">
-											<option th:each="contractor:${contractors}" th:value="${contractor.contractorId}" th:text = "${contractor.contractorFname + ' ' + contractor.contractorLname}"></option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<!-- CLOSE ROW-->
-						</div>
+							<!-- Sample Data just to show data in GUI -->
 
-						<div class="row">
-							<button class="btn btn-outline-primary" onclick="window.history.back(); return false;" id="return_button"> Return </button>
-							<a th:href="@{/service_orders/assignContractors}"><button type="submit" class="btn btn-outline-success" id="submit_button"> </button></a><!--data-toggle="modal" data-target="#myModal" onclick="getsubmission()"-->Submit</a>
-						</div>
+							<tbody id="customer_overall_values">
+							<!--<input th:field="*{svoId}" th:value="*{svoId}" type="text" class="form-control" readonly >-->
+
+							<tr  th:each="serviceOrderLinePresentation : ${serviceOrderLinePresentations}">
+
+								<td class="row-value" th:field="${serviceOrderLinePresentation.svoLineId}"  th:text="${serviceOrderLinePresentation.svoLineId}" hidden/>
+								<td class="row-value" th:field= "${serviceOrderLinePresentation.svcId}" th:text="${serviceOrderLinePresentation.svcId}" hidden/>
+								<td class="row-value" th:field="${serviceOrderLinePresentation.svcName}"th:text="${serviceOrderLinePresentation.svcName}" />
+								<td><a type="button" class="btn btn-primary" th:href="@{/service_orders/showFormForAddAssignment(svoLineId=${serviceOrderLinePresentation.svoLineId})}">Select</a></td>
+
+							</tr>
+							<style>
+								#td_overflow{
+									overflow:hidden;
+									text-overflow:ellipsis;
+									white-space:nowrap;
+								}
+							</style>
+
+							</tbody>
+						</table>
+					</div>
+
+                    <div><a type="button" class = "btn btn-success" th:href="@{/service_orders/search}">Complete</a></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal footer -->
 
 						<!--<div class="modal fade" id="myModal">-->
 							<!--<div class="modal-dialog">-->

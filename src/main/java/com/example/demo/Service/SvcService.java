@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface SvcService {
     List<Svc> findAll();
+
+    Svc findBySvcId(int Id);
+
+    List<Svc> findActiveSvcs();
 }

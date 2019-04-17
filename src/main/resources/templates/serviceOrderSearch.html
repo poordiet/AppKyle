@@ -283,7 +283,7 @@
                     </style>
 
 
-                    <tr th:each="tempServiceOrder : ${serviceOrderPresentations}">
+                    <tr th:onclick="'javascript:rowClicked(\'' + ${tempServiceOrder.svoId} + '\');'" th:href="@{/home/home}" th:each="tempServiceOrder : ${serviceOrderPresentations}">
 
                         <td th:text="${tempServiceOrder.svoId}" />
                         <td th:text="${#dates.format(tempServiceOrder.dateScheduled, 'MM/dd/YYYY HH:mm' )}" />
@@ -292,29 +292,21 @@
                         <td th:text="${tempServiceOrder.custSiteName}" />
                         <td th:text="${tempServiceOrder.custSiteLocation}" />
                         <td th:text="${tempServiceOrder.contactName}" />
-                        <td th:text="${#dates.format(tempServiceOrder.dateFinished, 'MM/dd/YYY')}" />
+                        <td th:text="${#dates.format(tempServiceOrder.dateFinished, 'MM/dd/YYYY HH:mm')}" />
                         <td th:text="${tempServiceOrder.svoStatus}" />
                         <td th:text="${tempServiceOrder.contractors}" />
-                        <td id= "td_overflow"><button type="button" class="btn btn-primary">Edit</button>
+                        <td id= "td_overflow">
                             <a type="button" class="btn btn-danger" th:href="@{/service_orders/delete(svoId=${tempServiceOrder.svoId})}"
                             onclick="if(!(confirm('Are you sure you would like to delete this service order?')))return false">Delete</a></td>
 
                     </tr>
 
-                    <!-- Crappy Placeholder Text for future connection with database etc
-                    <tr th:each="tempServiceOrder : ${serviceOrders}, tempCustomerSite : ${customerSites}">
-
-                        <td th:text="${tempServiceOrder.id}" />
-                        <td th:text="${tempServiceOrder.date_scheduled}" />
-                        <td th:text="${tempServiceOrder.service}" />
-                        <td th:text="${tempCustomerSite.customer_num}" />
-                        <td th:text="${tempCustomerSite.customer_name}" />
-                        <td th:text="${tempServiceOrder.date_completed}" />
-                        <td th:text="${tempServiceOrder.status}" />
-                        <td><button type="button">Edit</button> <button type="button">Delete</button></td>
-
-                    </tr>
-                    -->
+                    <!-- Click row in table and return this link -->
+                    <script>
+                        function rowClicked(value) {
+                            location.href = "/service_orders/serviceOrderProfile?svoId=" + value;
+                        }
+                    </script>
 
                     </tbody>
                 </table>
